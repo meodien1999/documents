@@ -209,3 +209,82 @@ Method: `POST` <br />
 Header:
 
  - Authorization: `access-token`
+
+### Lấy thông báo mới của người dùng hiện tại (Bao gồm thông báo chuông, mainMenu, subMenu, Item)
+Path: `/notification/pull` <br />
+Method: `GET` <br />
+Header:
+
+ - Authorization: `access-token`
+
++ Lấy thông danh sách tất cả các thông báo mới:
+Query param `status` là optional, truyền vào `new` sẽ lấy các thông báo mới, `unnew` là các thông báo không còn mới. Nếu không truyền vào sẽ lấy tất cả (Count hoặc Length để đếm số lượng thông báo mới).
++ Lấy thông danh sách các thông báo mới ở MainMenu:
+Query param `status` và `menuID` là optional, với param `status` truyền vào `mainmenu` và với param `menuID` truyền vào `ID` của mainMenu đó (Count hoặc Length để đếm số lượng thông báo mới).
++ Lấy thông danh sách các thông báo mới ở SubMenu:
+Query param `status` và `submenuID` là optional, với param `status` truyền vào `submenu` và với param `submenuID` truyền vào `ID` của subMenu đó (Count hoặc Length để đếm số lượng thông báo mới).
++ Lấy thông danh sách các thông báo mới ở Item:
+Query param `status` và `itemID` là optional, với param `status` truyền vào `item` và với param `itemID` truyền vào `ID` của item đó (Count hoặc Length để đếm số lượng thông báo mới).
+
++ các id của menu vào item và cũng như là Appcode sẽ được truyền bằng thư viện DPSinfra Version 1.7.3 trở lên, sẽ bao gồm các thông tin cần truyền như sau:
+socketMessage asyncnotice = new socketMessage()
+``` cs
+public void testnotification()
+{
+    var json = new
+    {
+        abc = "123"
+    };
+    socketMessage asyncnotice = new socketMessage()
+    {
+        ...
+        idObject = 1, // tương ứng với itemid
+        AppCode = "CODE",
+        menuID = 1,
+        subMenuID = 1,
+    };
+    _notifier.sendSocket(asyncnotice);
+}
+```
+
+### Đánh dấu đã xem tất cả thông báo mới
+Path: `/notification/readallnew` <br />
+Method: `POST` <br />
+Header:
+
+ - Authorization: `access-token`
+
+### Đánh dấu đã xem thông báo ở từng mục (mainmenu, submenu, item)
+Path: `/notification/readnew` <br />
+Method: `POST` <br />
+Header:
+
+ - Authorization: `access-token`
+
+Body: application/json
+``` json
+{
+	"appCode":  "string",
+	"mainMenuID":  "number",
+	"subMenuID":  "number",
+	"itemID":  "number" (idObject gửi từ thư viện)
+}
+```
+
+Query param `AppCode` là bắt buộc các thông tin khác có thể để trống (Đang được cập nhật)
+
+### Đánh dấu đã xem và đã đọc thông báo từ trang chi tiết
+- Thay vì click vào cái chuông xong click vào thông báo thì mới tính là đã đọc đó,thay vào đó người dùng vào chi tiết (gõ tay hoặc click onesignal để vào chi tiết) sẽ gọi api này để đánh dấu đã đọc cho thông báo đó
+Path: `/notification/readDetail` <br />
+Method: `POST` <br />
+Header:
+
+ - Authorization: `access-token`
+
+Body: application/json
+``` json
+{
+	"appCode":  "string",
+	"itemID":  "number" (idObject gửi từ thư viện)
+}
+```
