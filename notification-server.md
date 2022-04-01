@@ -220,11 +220,11 @@ Header:
 + Lấy thông danh sách tất cả các thông báo mới:
 Query param `status` là optional, truyền vào `new` sẽ lấy các thông báo mới, `unnew` là các thông báo không còn mới. Nếu không truyền vào sẽ lấy tất cả (Count hoặc Length để đếm số lượng thông báo mới).
 + Lấy thông danh sách các thông báo mới ở MainMenu:
-Query param `status` và `menuID` là optional, với param `status` truyền vào `mainmenu` và với param `menuID` truyền vào `ID` của mainMenu đó (Count hoặc Length để đếm số lượng thông báo mới).
+Query param `status` và `id` là optional, với param `status` truyền vào `mainmenu` và với param `id` truyền vào `ID` của mainMenu đó (Count hoặc Length để đếm số lượng thông báo mới).
 + Lấy thông danh sách các thông báo mới ở SubMenu:
-Query param `status` và `submenuID` là optional, với param `status` truyền vào `submenu` và với param `submenuID` truyền vào `ID` của subMenu đó (Count hoặc Length để đếm số lượng thông báo mới).
+Query param `status` và `id` là optional, với param `status` truyền vào `submenu` và với param `id` truyền vào `ID` của subMenu đó (Count hoặc Length để đếm số lượng thông báo mới).
 + Lấy thông danh sách các thông báo mới ở Item:
-Query param `status` và `itemID` là optional, với param `status` truyền vào `item` và với param `itemID` truyền vào `ID` của item đó (Count hoặc Length để đếm số lượng thông báo mới).
+Query param `status` và `id` là optional, với param `status` truyền vào `item` và với param `id` truyền vào `ID` của item đó (Count hoặc Length để đếm số lượng thông báo mới).
 
 + các id của menu vào item và cũng như là Appcode sẽ được truyền bằng thư viện DPSinfra Version 1.7.3 trở lên, sẽ bao gồm các thông tin cần truyền như sau:
 socketMessage asyncnotice = new socketMessage()
