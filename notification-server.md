@@ -264,14 +264,19 @@ Header:
 Body: application/json
 ``` json
 {
-	"appCode":  "string",
-	"mainMenuID":  "number",
-	"subMenuID":  "number",
-	"itemID":  "number" (idObject gửi từ thư viện)
+	"appCode":  "string", //bắt buộc
+	"mainMenuID":  "number", //bắt buộc
+	"subMenuID":  "number", // có thể để trống hoặc bằng 0
+	"itemID":  "number" // (idObject gửi từ thư viện) có thể để trống hoặc bằng 0
 }
 ```
 
-Query param `AppCode` là bắt buộc các thông tin khác có thể để trống
+Query param `AppCode, mainMenuID` là bắt buộc các thông tin khác có thể để trống
+
+- Tùy vào trường hợp muốn cập nhật thông báo từ đâu thì sẽ truyền các thông tin cần thiết như ví dụ sau:
+-- Muốn cập nhật lại thông báo new ở mainMenu: fields cần truyền là `appCode` và `mainMenuID`
+-- Muốn cập nhật lại thông báo new ở subMenu: fields cần truyền là `appCode`, `mainMenuID` và `subMenuID`
+-- Muốn cập nhật lại thông báo new ở item : fields cần truyền là `appCode`, `mainMenuID`, `subMenuID` và `itemID`
 
 ### Đánh dấu đã xem và đã đọc thông báo từ trang chi tiết
 - Thay vì click vào cái chuông xong click vào thông báo thì mới tính là đã đọc đó,thay vào đó người dùng vào chi tiết (gõ tay hoặc click onesignal để vào chi tiết) sẽ gọi api này để đánh dấu đã đọc cho thông báo đó
