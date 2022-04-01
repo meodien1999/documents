@@ -271,7 +271,7 @@ Body: application/json
 }
 ```
 
-Query param `AppCode` là bắt buộc các thông tin khác có thể để trống (Đang được cập nhật)
+Query param `AppCode` là bắt buộc các thông tin khác có thể để trống
 
 ### Đánh dấu đã xem và đã đọc thông báo từ trang chi tiết
 - Thay vì click vào cái chuông xong click vào thông báo thì mới tính là đã đọc đó,thay vào đó người dùng vào chi tiết (gõ tay hoặc click onesignal để vào chi tiết) sẽ gọi api này để đánh dấu đã đọc cho thông báo đó
