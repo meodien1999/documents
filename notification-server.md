@@ -239,7 +239,7 @@ public void testnotification()
     {
         ...
         idObject = 1, // tương ứng với itemid
-        AppCode = "CODE",
+        AppCode = "CODE", // BẮT BUỘC
         menuID = 1,
         subMenuID = 1,
     };
