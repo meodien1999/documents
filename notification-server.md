@@ -143,8 +143,28 @@ public async void testnotificationemail()
     await _notifier.sendEmail(asyncnotice);
 }
 ```
-
 Method `sendEmail` là async, nếu dùng await có thể dùng thêm try-catch để bắt lỗi, nếu có.
+
+- Update Lib v1.8.0: Lưu ý khi sửa dụng method `sendEmail`
+Trường hợp sửa dụng lib 1.8.0 cần truyền thêm 2 fields dưới đây ở cả 2 trường hợp trên (Có thể bỏ trống 2 fields `from` và `to`)
+``` cs
+public async void testnotificationemail()
+{
+    emailMessage asyncnotice = new emailMessage()
+    {
+	//access_token = "abc...", chọn 1 trong 2 như 2 trường hợp trên
+	//CustomerID = 1, chọn 1 trong 2 như 2 trường hợp trên
+	sender = "Username người gửi", // trường thêm mới (có thể bỏ trống, nhưng có thể truyền vào thì nên truyền)
+        receivers = new string[] { "superuser" }, // trường thêm mới
+        from = "ABCDE",
+        to = "hoaauquoc@gmail.com",
+        subject = "subject",
+        html = "<h1>Hello World</h1>"
+    };
+    await _notifier.sendEmail(asyncnotice);
+}
+```
+
 ## Desktop
 
 Tại controller muốn gửi thông báo đến desktop, inject service `notifier` với interface là `INotifier` lấy được từ DPSinfra. Trong ví dụ dưới, service đã được inject vào biến `_notifier`. Gọi method `sendDesktop` với data thuộc class `desktopMessage` để gửi thông báo qua Desktop
